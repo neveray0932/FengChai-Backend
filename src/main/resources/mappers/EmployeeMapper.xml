@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neveray0932.fengchai.mapper.EmployeeMapper">
+
+    <select id="findAllWithNoCondition" resultType="com.neveray0932.fengchai.common.dto.employee.EmployeeNoCondition">
+        select @rownum := @rownum +1 as 'rowNo', e.*
+        from employee e
+        ,(select @rownum :=0)b
+        order by e.emp_id
+    </select>
+
+    <select id="findAllWithNoConditionPage" resultType="com.neveray0932.fengchai.common.dto.employee.EmployeeNoCondition">
+        <bind name="empName" value="'%'+empName+'%'"/>
+        <bind name="empId" value="'%'+empId+'%'"/>
+        <bind name="empPosition" value="'%'+empPosition+'%'"/>
+        select e.emp_id ,e.emp_name, e.emp_identity_card,
+            e.emp_phone ,e.emp_address ,ep.emp_position_name
+             ,e.create_time ,e.emp_leave_time ,e.update_time
+             ,e.leave_flag
+        from employee e
+        left join emp_position ep on e.emp_position_id = ep.emp_position_id
+        where
+            e.emp_name like #{empName}
+          and
+            e.emp_id  like #{empId}
+          and
+            ep.emp_position_name like #{empPosition}
+        order by e.leave_flag asc,e.emp_id asc
+        limit #{limit} offset #{page}
+
+    </select>
+    <select id="findByEmpIdGetPosition" resultType="com.neveray0932.fengchai.common.dto.employee.EmployeeNoCondition">
+        select e.emp_id ,e.emp_name, e.emp_identity_card,
+            e.emp_phone ,e.emp_address ,ep.emp_position_name
+                        ,e.create_time ,e.emp_leave_time ,e.update_time
+                        ,e.leave_flag
+        from employee e
+        left join emp_position ep on e.emp_position_id = ep.emp_position_id
+        where e.emp_id = #{empId}
+    </select>
+</mapper>
