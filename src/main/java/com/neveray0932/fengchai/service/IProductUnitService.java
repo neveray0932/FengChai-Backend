@@ -1,6 +1,6 @@
 package com.neveray0932.fengchai.service;
 
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.ProductUnit;
 import com.baomidou.mybatisplus.extension.service.IService;
 

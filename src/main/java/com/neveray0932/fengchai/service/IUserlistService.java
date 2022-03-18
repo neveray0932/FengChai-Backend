@@ -1,6 +1,6 @@
 package com.neveray0932.fengchai.service;
 
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.Userlist;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -16,5 +16,7 @@ public interface IUserlistService extends IService<Userlist> {
 
     ResultVO userRegister(Userlist userlist);
     ResultVO userLogin(Userlist userlist);
+    ResultVO userLogout();
+
 
 }

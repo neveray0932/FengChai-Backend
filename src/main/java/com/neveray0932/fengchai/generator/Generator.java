@@ -22,7 +22,7 @@ public class Generator {
                 })
                 .strategyConfig(builder -> {
 
-                    builder.addInclude("emp_position")
+                    builder.addInclude("user_temp")
                             .entityBuilder()
                             .enableLombok()
                             .disableSerialVersionUID();

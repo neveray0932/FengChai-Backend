@@ -1,12 +1,10 @@
 package com.neveray0932.fengchai.service.impl;
 
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.Customer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CustomerServiceImplTest {

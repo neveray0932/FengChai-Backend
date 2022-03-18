@@ -1,4 +1,4 @@
-package com.neveray0932.fengchai.common.Vo;
+package com.neveray0932.fengchai.common.vo;
 
 /**
  * @author CADTECH

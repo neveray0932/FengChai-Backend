@@ -3,7 +3,7 @@ package com.neveray0932.fengchai.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.neveray0932.fengchai.common.Vo.ApiMsg;
+import com.neveray0932.fengchai.common.vo.ApiMsg;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.neveray0932.fengchai.common.dto.product;
 
 
-import com.neveray0932.fengchai.common.Vo.ApiMsg;
+import com.neveray0932.fengchai.common.vo.ApiMsg;
 import com.neveray0932.fengchai.common.dto.DTOEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

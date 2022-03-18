@@ -1,9 +1,8 @@
 package com.neveray0932.fengchai.service.impl;
 
-import com.neveray0932.fengchai.common.Vo.ResultMsg;
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultMsg;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.Depository;
-import com.neveray0932.fengchai.entity.ProductUnit;
 import com.neveray0932.fengchai.mapper.DepositoryMapper;
 import com.neveray0932.fengchai.service.IDepositoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -27,7 +26,7 @@ public class DepositoryServiceImpl extends ServiceImpl<DepositoryMapper, Deposit
     public ResultVO depositoryCreate(Depository depository) {
         boolean save = save(depository);
         if (save){
-            return new ResultVO(HttpStatus.CREATED.value(), ResultMsg.SUCCESS_INSERT,depository);
+            return new ResultVO(HttpStatus.OK.value(), ResultMsg.SUCCESS_INSERT,depository);
         }
 
             return new ResultVO(HttpStatus.NO_CONTENT.value(), ResultMsg.FAILED_INSERT,null);
@@ -45,7 +44,7 @@ public class DepositoryServiceImpl extends ServiceImpl<DepositoryMapper, Deposit
     }
 
     @Override
-    public ResultVO depositoryDelete(Integer depId) {
+    public ResultVO depositoryDelete(String depId) {
         boolean remove = removeById(depId);
         if (remove){
             return new ResultVO(HttpStatus.OK.value(), ResultMsg.SUCCESS_DELETED,true);

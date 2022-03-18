@@ -1,6 +1,6 @@
 package com.neveray0932.fengchai.controller;
 
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.Userlist;
 import com.neveray0932.fengchai.service.impl.UserlistServiceImpl;
 import io.swagger.annotations.Api;
@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 /**
  * <p>
@@ -41,6 +40,14 @@ public class UserlistController {
     @ApiResponses(value = {@ApiResponse(code = 200,message = "成功")})
     public ResultVO userLogin(@RequestBody Userlist userlist){
         ResultVO resultVO = userlistService.userLogin(userlist);
+        return  resultVO;
+    }
+
+    @PostMapping("/logout")
+    @ApiOperation(value = "用戶登出",notes = "用戶登出")
+    @ApiResponses(value = {@ApiResponse(code = 200,message = "成功")})
+    public ResultVO userLogin(){
+        ResultVO resultVO = userlistService.userLogout();
         return  resultVO;
     }
 

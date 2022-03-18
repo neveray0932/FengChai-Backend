@@ -7,8 +7,8 @@ import com.neveray0932.fengchai.common.dto.*;
 import com.neveray0932.fengchai.common.dto.customer.CustomerCreateDto;
 import com.neveray0932.fengchai.common.dto.customer.CustomerFindOneDto;
 import com.neveray0932.fengchai.common.dto.customer.CustomerUpdateDto;
-import com.neveray0932.fengchai.common.Vo.ResultMsg;
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultMsg;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.common.utils.DtoUtils;
 import com.neveray0932.fengchai.entity.Customer;
 import com.neveray0932.fengchai.mapper.CustomerMapper;
@@ -72,6 +72,8 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
 
         if (custId!=null){
             remove = updateById(customer);
+        }else{
+            throw new RuntimeException("CustID is null");
         }
 
         if(remove){
@@ -106,6 +108,9 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         IPage<Customer> iPage = new Page<>(page,limit);
         QueryWrapper<Customer> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().like(Customer::getCustName,trimCustName);
+        queryWrapper.orderByAsc("del_flag");
+        queryWrapper.orderByAsc("cust_name");
+
         IPage<Customer> customerIPage = getBaseMapper().selectPage(iPage, queryWrapper);
         List<DTOEntity> dtoList = new DtoUtils().convertToDtoList(customerIPage.getRecords(), new CustomerFindOneDto());
         pageDto.setRecords(dtoList);

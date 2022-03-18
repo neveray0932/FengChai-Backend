@@ -3,8 +3,8 @@ package com.neveray0932.fengchai.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.neveray0932.fengchai.common.dto.*;
-import com.neveray0932.fengchai.common.Vo.ResultMsg;
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultMsg;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.common.dto.employee.*;
 import com.neveray0932.fengchai.common.utils.DtoUtils;
 import com.neveray0932.fengchai.entity.EmpPosition;

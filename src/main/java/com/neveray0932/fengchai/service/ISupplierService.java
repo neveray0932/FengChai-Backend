@@ -1,8 +1,7 @@
 package com.neveray0932.fengchai.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.neveray0932.fengchai.common.Vo.ResultVO;
-import com.neveray0932.fengchai.entity.Company;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.Supplier;
 
 /**
@@ -22,5 +21,7 @@ public interface ISupplierService extends IService<Supplier> {
     ResultVO supplierDelete(Integer supplierId );
 
     ResultVO supplierFindAll();
+
+    ResultVO supplierPagination(Integer limit, Integer page, String supplierName);
 
 }

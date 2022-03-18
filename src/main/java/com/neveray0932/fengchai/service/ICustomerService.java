@@ -1,9 +1,8 @@
 package com.neveray0932.fengchai.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.Customer;
-import com.neveray0932.fengchai.entity.Employee;
 
 /**
  * <p>

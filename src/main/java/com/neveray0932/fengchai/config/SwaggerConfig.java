@@ -66,7 +66,7 @@ public class SwaggerConfig {
 
         List<Parameter> parameterList = new ArrayList<>();
 
-        Parameter build = parameterBuilder.name("token").description("Jwt")
+        Parameter build = parameterBuilder.name("Authorization").description("Jwt")
                 .modelRef(new ModelRef("string")).parameterType("header")
                 .required(false).build();
         parameterList.add(build);

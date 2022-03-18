@@ -1,9 +1,7 @@
 package com.neveray0932.fengchai.controller;
 
-import com.neveray0932.fengchai.common.Vo.ResultVO;
-import com.neveray0932.fengchai.entity.Company;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.Supplier;
-import com.neveray0932.fengchai.service.impl.CompanyServiceImpl;
 import com.neveray0932.fengchai.service.impl.SupplierServiceImpl;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +62,23 @@ public class SupplierController {
     public ResultVO deleteOne(@RequestParam(value = "supplierId")Integer supplierId){
         ResultVO resultVO = supplierService.supplierDelete(supplierId);
         return resultVO;
+    }
+
+    @GetMapping("/page")
+    @ApiOperation(value = "條件分頁查詢", notes = "輸入Page、Limit及條件")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="limit",value="筆數(頁)",required = true),
+            @ApiImplicitParam(name="page",value="當前頁數",required = true),
+            @ApiImplicitParam(name="supplierName",value="供應商名稱"),
+
+
+    })
+    public ResultVO page(@RequestParam(value = "limit") Integer limit,
+                         @RequestParam(value = "page") Integer page,
+                         @RequestParam(value = "supplierName") String supplierName){
+        ResultVO resultVO = supplierService.supplierPagination(limit, page,supplierName);
+        return resultVO;
+
     }
 
 }

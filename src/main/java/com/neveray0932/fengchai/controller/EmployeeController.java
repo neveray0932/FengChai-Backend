@@ -2,7 +2,7 @@ package com.neveray0932.fengchai.controller;
 
 import com.neveray0932.fengchai.common.dto.employee.EmployeeCreateDto;
 import com.neveray0932.fengchai.common.dto.employee.EmployeeUpdateDto;
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.service.impl.EmployeeServiceImpl;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,8 +4,7 @@ import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.neveray0932.fengchai.common.Vo.ApiMsg;
-import io.swagger.annotations.ApiImplicitParam;
+import com.neveray0932.fengchai.common.vo.ApiMsg;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

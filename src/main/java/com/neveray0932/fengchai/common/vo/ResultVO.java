@@ -1,4 +1,4 @@
-package com.neveray0932.fengchai.common.Vo;
+package com.neveray0932.fengchai.common.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,7 +8,7 @@ import lombok.Data;
  * @author CADTECH
  */
 @Data
-@ApiModel(description = "Response數據")
+@ApiModel(value = "Response對象")
 public class ResultVO<T> {
     @ApiModelProperty(value = "響應代號")
     private Integer code;

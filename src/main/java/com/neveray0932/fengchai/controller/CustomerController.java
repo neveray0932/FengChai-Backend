@@ -1,13 +1,11 @@
 package com.neveray0932.fengchai.controller;
 
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.Customer;
-import com.neveray0932.fengchai.entity.Employee;
 import com.neveray0932.fengchai.service.impl.CustomerServiceImpl;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 /**
  * <p>

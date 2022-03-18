@@ -1,7 +1,7 @@
 package com.neveray0932.fengchai.service.impl;
 
-import com.neveray0932.fengchai.common.Vo.ResultMsg;
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultMsg;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.EmpPosition;
 import com.neveray0932.fengchai.mapper.EmpPositionMapper;
 import com.neveray0932.fengchai.service.IEmpPositionService;

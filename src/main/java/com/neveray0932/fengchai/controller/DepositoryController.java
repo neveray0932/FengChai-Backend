@@ -1,14 +1,11 @@
 package com.neveray0932.fengchai.controller;
 
-import com.neveray0932.fengchai.common.Vo.ResultVO;
+import com.neveray0932.fengchai.common.vo.ResultVO;
 import com.neveray0932.fengchai.entity.Depository;
-import com.neveray0932.fengchai.entity.ProductUnit;
 import com.neveray0932.fengchai.service.impl.DepositoryServiceImpl;
-import com.neveray0932.fengchai.service.impl.ProductUnitServiceImpl;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 /**
  * <p>
@@ -53,7 +50,7 @@ public class DepositoryController {
     @ApiResponses(value = {@ApiResponse(code = 200,message = "成功")})
     @ApiImplicitParam( name="depId", value = "倉庫別編號", required = true)
     @DeleteMapping("/delete")
-    public ResultVO deleteOne(@RequestParam(value = "depId")Integer depId){
+    public ResultVO deleteOne(@RequestParam(value = "depId")String depId){
         ResultVO resultVO = depositoryService.depositoryDelete(depId);
         return resultVO;
     }

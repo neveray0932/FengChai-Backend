@@ -30,4 +30,6 @@ public class SupplierFindOneDto implements DTOEntity {
 
 
     private String supplierContact;
+
+    private String delFlag;
 }

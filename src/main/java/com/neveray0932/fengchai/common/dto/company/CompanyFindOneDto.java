@@ -22,4 +22,6 @@ public class CompanyFindOneDto implements DTOEntity {
     private String compPhone;
 
     private String compContact;
+
+    private String delFlag;
 }
