@@ -36,7 +36,7 @@ public class ProductCreateDto implements DTOEntity {
     private String pSize;
 
     @ApiModelProperty(value = "供應商名稱")
-    private String compName;
+    private String supplierName;
 
     @ApiModelProperty(value = "產品備註")
     private String pRemark;

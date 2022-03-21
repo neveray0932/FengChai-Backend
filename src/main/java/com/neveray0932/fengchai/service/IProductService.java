@@ -20,6 +20,6 @@ public interface IProductService extends IService<Product> {
     ResultVO prodUpdate(ProductUpdateDto productUpdateDto);
     ResultVO prodDelete(String prodId);
     ResultVO prodFindAll();
-    ResultVO prodPagination(Integer limit, Integer page, String pName, String compName);
+    ResultVO prodPagination(Integer limit, Integer page, String pName, String supplierName);
 
 }

@@ -61,16 +61,16 @@ public class ProductController {
     @ApiImplicitParams({
             @ApiImplicitParam(name="limit",value="筆數(頁)",required = true),
             @ApiImplicitParam(name="page",value="當前頁數",required = true),
-            @ApiImplicitParam(name="prodName",value="產品名稱"),
-            @ApiImplicitParam(name="compName",value="供應商名稱")
+            @ApiImplicitParam(name="pName",value="產品名稱"),
+            @ApiImplicitParam(name="supplierName",value="供應商名稱")
 
 
     })
     public ResultVO page(@RequestParam(value = "limit") Integer limit,
                          @RequestParam(value = "page") Integer page,
-                         @RequestParam(value = "prodName") String prodName,
-                         @RequestParam(value = "prodName") String compName){
-        ResultVO resultVO = productService.prodPagination(limit, page,prodName,compName);
+                         @RequestParam(value = "pName") String prodName,
+                         @RequestParam(value = "supplierName") String supplierName){
+        ResultVO resultVO = productService.prodPagination(limit, page,prodName,supplierName);
         return resultVO;
 
     }

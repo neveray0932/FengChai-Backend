@@ -31,7 +31,7 @@ public class ProductPageDto implements DTOEntity {
     private String pSize;
 
 
-    private String compName;
+    private String supplierName;
 
 
     private String pRemark;

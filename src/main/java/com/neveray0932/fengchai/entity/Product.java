@@ -46,7 +46,7 @@ public class Product {
     private String pSize;
 
     @ApiModelProperty(value = "供應商ID")
-    private Integer pCompid;
+    private Integer pSupplierId;
 
     @ApiModelProperty(value = "產品備註")
     private String pRemark;

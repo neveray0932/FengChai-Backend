@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -25,9 +26,16 @@ public class ProductUnitServiceImpl extends ServiceImpl<ProductUnitMapper, Produ
 
     @Override
     public ResultVO prodUnitCreate(ProductUnit productUnit) {
-        boolean save = save(productUnit);
+        QueryWrapper<ProductUnit> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(ProductUnit::getPunitName,productUnit.getPunitName());
+        ProductUnit one = getOne(queryWrapper);
+        boolean save = false;
+        if(Objects.isNull(one)){
+            save = save(productUnit);
+        }
+
         if (save){
-            return new ResultVO(HttpStatus.CREATED.value(), ResultMsg.SUCCESS_INSERT,productUnit);
+            return new ResultVO(HttpStatus.OK.value(), ResultMsg.SUCCESS_INSERT,productUnit);
         }
 
             return new ResultVO(HttpStatus.NO_CONTENT.value(), ResultMsg.FAILED_INSERT,null);

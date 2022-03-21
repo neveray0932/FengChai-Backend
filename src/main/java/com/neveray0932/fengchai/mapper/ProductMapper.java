@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public interface ProductMapper extends BaseMapper<Product> {
 
-    List<ProductPageDto> findAllProductByPage(Integer limit, Integer page, String pName, String compName );
+    List<ProductPageDto> findAllProductByPage(Integer limit, Integer page, String pName, String supplierName );
 
     ProductPageDto findAllJoin(String prodId);
 

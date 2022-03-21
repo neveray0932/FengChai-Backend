@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/user-list/login").anonymous()
                 .antMatchers("/user-list/register").permitAll()
+                .antMatchers("/user-list/refresh-token","/user-temp/remove").permitAll()
                 .antMatchers(AUTH_WHITELIST).permitAll()
 //                .antMatchers("/boss").hasAuthority("boss")
                 //除上面 外的所有請求權需要授權認證

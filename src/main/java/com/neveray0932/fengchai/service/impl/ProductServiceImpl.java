@@ -43,18 +43,18 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
         Integer prodUnitId = productUnitService.prodUnitGetId(productCreateDto.getPUnitName());
 
-        Integer compId = companyService.compGetId(productCreateDto.getCompName());
+        Integer supplierId = companyService.compGetId(productCreateDto.getSupplierName());
 
         Product product= new Product();
 
         product.setPId(productCreateDto.getPId());
         product.setPName(productCreateDto.getPName());
         product.setPUnitId(prodUnitId);
-        product.setPPrice(productCreateDto.getPPrice());
+        product.setPPrice((int) (productCreateDto.getPCost()*productCreateDto.getPCoefficient()));
         product.setPCoefficient(productCreateDto.getPCoefficient());
         product.setPCost(productCreateDto.getPCost());
         product.setPSize(productCreateDto.getPSize());
-        product.setPCompid(compId);
+        product.setPSupplierId(supplierId);
         product.setPRemark(productCreateDto.getPRemark());
         product.setDelFlag(0);
 
@@ -72,18 +72,20 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
         Integer prodUnitId = productUnitService.prodUnitGetId(productUpdateDto.getPUnitName());
 
-        Integer compId = companyService.compGetId(productUpdateDto.getCompName());
+        Integer supplierId = companyService.compGetId(productUpdateDto.getSupplierName());
 
         Product product= new Product();
 
         product.setPId(productUpdateDto.getPId());
         product.setPName(productUpdateDto.getPName());
         product.setPUnitId(prodUnitId);
-        product.setPPrice(productUpdateDto.getPPrice());
+
         product.setPCoefficient(productUpdateDto.getPCoefficient());
         product.setPCost(productUpdateDto.getPCost());
+
+        product.setPPrice((int) (productUpdateDto.getPCost()*productUpdateDto.getPCoefficient()));
         product.setPSize(productUpdateDto.getPSize());
-        product.setPCompid(compId);
+        product.setPSupplierId(supplierId);
         product.setPRemark(productUpdateDto.getPRemark());
         product.setDelFlag(0);
 
@@ -122,12 +124,12 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public ResultVO prodPagination(Integer limit, Integer page, String prodName,String compName) {
+    public ResultVO prodPagination(Integer limit, Integer page, String pName,String supplierName) {
 
         Integer pages = (page-1)*limit;
 
-        String trimProdName = prodName.trim();
-        String trimCompName = compName.trim();
+        String trimProdName = pName.trim();
+        String trimCompName = supplierName.trim();
 
         List<ProductPageDto> productPageDtos = getBaseMapper().findAllProductByPage(limit, pages, trimProdName, trimCompName);
 

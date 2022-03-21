@@ -4,29 +4,29 @@
 
     <select id="findAllProductByPage" resultType="com.neveray0932.fengchai.common.dto.product.ProductPageDto">
         <bind name="pName" value="'%'+pName+'%'"/>
-        <bind name="compName" value="'%'+compName+'%'"/>
+        <bind name="supplierName" value="'%'+supplierName+'%'"/>
         select p.p_id ,p.p_name,pu.punit_name , p.p_price,
-               p.p_coefficient ,p.p_cost ,p.p_size,c.comp_name ,
+               p.p_coefficient ,p.p_cost ,p.p_size,s.supplier_name ,
                p.p_remark ,p.del_flag
         from product p
                  left join product_unit pu on pu.punit_id =p.p_unit_id
-                 left join company c on c.comp_id =p.p_compid
+                 left join supplier s on s.supplier_id =p.p_supplier_id
         where
             p.p_name  like #{pName}
           and
-            c.comp_name  like #{compName}
+            s.supplier_name  like #{supplierName}
 
-        order by p.del_flag asc,p.p_name  asc
+        order by p.del_flag asc,p.p_id  asc
         limit #{limit} offset #{page}
     </select>
 
     <select id="findAllJoin" resultType="com.neveray0932.fengchai.common.dto.product.ProductPageDto">
         select p.p_id ,p.p_name,pu.punit_name , p.p_price,
-               p.p_coefficient ,p.p_cost ,p.p_size,c.comp_name ,
+               p.p_coefficient ,p.p_cost ,p.p_size,s.supplier_name ,
                p.p_remark ,p.del_flag
         from product p
                  left join product_unit pu on pu.punit_id =p.p_unit_id
-                 left join company c on c.comp_id =p.p_compid
+                 left join supplier s on s.supplier_id =p.p_supplier_id
         where
             p.p_id = #{prodId}
         order by p.del_flag asc,p.p_name  asc

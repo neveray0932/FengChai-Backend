@@ -1,10 +1,10 @@
 package com.neveray0932.fengchai.filter;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.neveray0932.fengchai.common.dto.role.FindUserRoleDto;
+import com.neveray0932.fengchai.common.JwsPassword;
 import com.neveray0932.fengchai.entity.UserTemp;
 import com.neveray0932.fengchai.service.impl.UserTempServiceImpl;
+import com.neveray0932.fengchai.service.impl.UserlistServiceImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -28,7 +28,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
-import static org.springframework.http.HttpStatus.FORBIDDEN;
+
 
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
@@ -36,9 +36,16 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     UserTempServiceImpl userTempService;
 
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //獲取token
+
+        if(request.getServletPath().equals("/user-list/refresh-token")||request.getServletPath().equals("/user-temp/remove")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String token = request.getHeader(AUTHORIZATION);
         if(!StringUtils.hasText(token)){
             //放行
@@ -47,11 +54,11 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             return;
         }
         //解析token
-        Object empId;
+        Object username;
         List<String> role;
         try{
-            Jws<Claims> jws = Jwts.parser().setSigningKey("fengchai6666").parseClaimsJws(token);
-            empId = jws.getBody().get("empId");
+            Jws<Claims> jws = Jwts.parser().setSigningKey(JwsPassword.PASSWORD).parseClaimsJws(token);
+            username = jws.getBody().get("username");
             role = (List<String>) jws.getBody().get("role");
 
 
@@ -68,12 +75,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
 
         //從redis中獲取用戶信息
-        QueryWrapper<UserTemp> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(UserTemp::getEmpId,empId);
-        UserTemp temp = userTempService.getOne(queryWrapper);
-        if(Objects.isNull(temp)){
-            throw new RuntimeException("帳號未登入");
-        }
+//        QueryWrapper<UserTemp> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.lambda().eq(UserTemp::getUserName,username);
+//        UserTemp temp = userTempService.getOne(queryWrapper);
+//        if(Objects.isNull(temp)){
+//            throw new RuntimeException("帳號未登入");
+//        }
         //存入SecurityContextHolder
         //TODO 獲取權限信息封裝到Authentication中
 //        Collection<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
@@ -84,11 +91,11 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
 
 
-        ;
+
 
         UsernamePasswordAuthenticationToken authenticationToken =
 //                new UsernamePasswordAuthenticationToken(temp,null,null);
-                new UsernamePasswordAuthenticationToken(temp,null,role.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+                new UsernamePasswordAuthenticationToken(null,null,role.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
 
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
